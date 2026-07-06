@@ -3,66 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LIVE ARENA™ — Core 6.0 Cinematic Edition</title>
-<link rel="stylesheet" href="assets/css/core6.css">
+<title>LIVE ARENA™ — Core 7.1 Game Engine</title>
+<link rel="stylesheet" href="assets/css/core7.css">
 </head>
 <body>
-<div class="arena-shell" id="arenaShell">
+<div class="arena" id="arena">
+  <header class="top">
+    <div><b>SESSION #A7F3-29</b><small>EP.001 — THE AWAKENING</small></div>
+    <h1>LIVE ARENA™<small>CORE 7.1 GAME ENGINE</small></h1>
+    <div class="phase">BOSS PHASE <b id="bossPhase">SLEEPING</b></div>
+  </header>
 
-<header class="topbar">
-  <div class="session"><b>SESSION #A7F3-29</b><span>THE AWAKENING</span></div>
-  <div class="brand">LIVE ARENA™<small>CORE 6.0 CINEMATIC EDITION</small></div>
-  <div class="event-timer"><b>PRÓXIMO EVENTO</b><span>BOSS DA ARENA</span><strong id="timer">03:50</strong></div>
-</header>
+  <main class="grid">
+    <aside class="panel stats">
+      <div>❤️ Likes <b id="likes">0</b></div>
+      <div>🎁 Gifts <b id="gifts">0</b></div>
+      <div>👥 Viewers <b id="viewers">0</b></div>
+      <div>🔥 Combo <b id="combo">x0</b></div>
+      <div>⚡ Energy <b id="energy">0%</b></div>
+    </aside>
 
-<main class="arena-grid">
-  <aside class="left-hud">
-    <div class="hud-card pulse"><span>💗</span><small>LIKES</small><b id="likes">856 324</b></div>
-    <div class="hud-card"><span>🎁</span><small>PRESENTES</small><b id="gifts">282</b></div>
-    <div class="hud-card"><span>👥</span><small>VIEWERS</small><b id="viewers">5 747</b></div>
-    <div class="hud-card"><span>⭐</span><small>SEGUIDORES</small><b id="followers">201</b></div>
-    <div class="top-gifter"><h3>TOP GIFTER</h3><strong>@GUERREIRO 👑</strong><p><span>Presentes</span><b>98</b></p><p><span>Pontos</span><b>24.580</b></p></div>
-  </aside>
+    <section class="stage">
+      <div class="arena-master">
+        <div class="hood"></div>
+        <div class="mask"><i></i><i></i></div>
+      </div>
 
-  <section class="arena-stage">
-    <div class="ambient-ring ring-a"></div>
-    <div class="ambient-ring ring-b"></div>
-    <div class="dust"></div>
-    <div class="arena-master-label">ARENA MASTER</div>
-    <div class="arena-master" id="arenaMaster">
-      <div class="shoulders"></div><div class="hood"></div>
-      <div class="mask"><div class="eye left"></div><div class="eye right"></div></div>
-    </div>
+      <div class="boss" id="boss">
+        <div class="boss-name">BOSS DA ARENA</div>
+        <div class="boss-bar"><span id="bossHpBar"></span></div>
+        <div class="boss-hp" id="bossHp">100%</div>
+      </div>
+
+      <div class="event-banner" id="eventBanner">ARENA READY</div>
+    </section>
+
+    <aside class="panel director">
+      <h3>🤖 AI DIRECTOR</h3>
+      <p id="ai">A Arena está estável.</p>
+      <h3>🎯 MISSÃO</h3>
+      <p id="mission">Carregar energia até 100%.</p>
+      <h3>📜 EVENT LOG</h3>
+      <div id="log" class="log"></div>
+    </aside>
+  </main>
+
+  <section class="controls">
+    <button onclick="LiveArena.event('like')">❤️ Like</button>
+    <button onclick="LiveArena.event('gift')">🎁 Gift</button>
+    <button onclick="LiveArena.event('comment')">💬 Chat</button>
+    <button onclick="LiveArena.event('boss')">⚠ Spawn Boss</button>
+    <button onclick="LiveArena.event('attack')">⚔ Attack Boss</button>
+    <button onclick="LiveArena.event('random')">🌌 Random Event</button>
   </section>
 
-  <aside class="right-hud">
-    <section class="side-panel chat"><h3>CHAT DA ARENA</h3><div id="chat"><p>💬 @Rainha: Boss vai cair! 🐉</p><p>💬 @Fenix: Isto está épico! 👑</p><p>💬 @Estrela: Tudo desbloqueado hoje! ⚡</p></div></section>
-    <section class="side-panel ranking"><h3>RANKING DA ARENA</h3><p><b>1 Guerreiro 👑</b><span>33 190</span></p><p><b>2 Fenix</b><span>18 750</span></p><p><b>3 Dragon</b><span>12 420</span></p><p><b>4 Shadow</b><span>9 860</span></p><p><b>5 Estrela</b><span>8 430</span></p></section>
-    <section class="side-panel ai"><h3>ARENA AI</h3><p id="aiText">Energia máxima. Boss pronto para despertar.</p></section>
-  </aside>
-</main>
-
-<section class="mission-row">
-  <div class="energy-widget"><div class="energy-orb" id="energyOrb">100%</div><div><small>ENERGIA DA ARENA</small><b id="energyPoints">16 000 / 16 000</b></div></div>
-  <div class="mission-card"><small>MISSÃO ATIVA</small><b id="mission">DESBLOQUEAR O BOSS</b><span>A ARENA DEPENDE DE TI!</span></div>
-  <div class="ai-mini"><b>ARENA AI:</b><span id="aiMini"> O público desbloqueou energia máxima.</span></div>
-</section>
-
-<section class="gift-row">
-  <button data-gift="Rosa de Fogo">🌹 Rosa de Fogo</button><button data-gift="Coroa Arena">👑 Coroa Arena</button><button data-gift="Diamond Storm">💎 Diamond Storm</button><button data-gift="Dragão Dourado">🐉 Dragão Dourado</button><button data-gift="Boss Key">🔑 Boss Key</button><button data-gift="Arena Universe">🌌 Arena Universe</button>
-</section>
-
-<section class="bottom-row">
-  <div><small>COMBO</small><b id="combo">x31</b><span>INCRÍVEL!</span></div>
-  <div><small>PRESENTE RARO</small><b id="rareGift">DIAMOND STORM</b><span>00:18</span></div>
-  <div><small>EVENTO ATIVO</small><b id="activeEvent">TEMPESTADE DE ENERGIA</b><span>00:27</span></div>
-  <div><small>STREAK</small><b id="streak">21</b><span>MOMENTO ÉPICO!</span></div>
-  <div><small>POWERED BY</small><b>LIVE ARENA™</b><span>OBS Edition</span></div>
-</section>
-
-<div class="boss-alert" id="bossAlert"><small>⚠</small><b>BOSS DA ARENA</b><span>DESPERTOU</span></div>
-<div class="toast" id="toast">LIVE ARENA™ ONLINE</div>
+  <div class="toast" id="toast">ONLINE</div>
 </div>
-<script type="module" src="engine/core6-engine.js"></script>
+
+<script type="module" src="engine/core7-engine.js"></script>
 </body>
 </html>

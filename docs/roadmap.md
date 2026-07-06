@@ -1,3 +1,1 @@
-# Roadmap
-
-Core 6.1: audio, particles, OBS transparent overlay.
+# Core 7 Roadmap\n\n7.1 Game Engine\n7.2 Cinematic FX\n7.3 TikTok Connector\n
