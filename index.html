@@ -3,95 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LIVE ARENA™ — Core 7.1 Fixed</title>
-<style>
-*{box-sizing:border-box}
-:root{--gold:#d8b75a;--gold2:#fff0a6;--red:#d72638;--line:rgba(216,183,90,.28)}
-html,body{margin:0;width:100%;height:100%;background:#000;color:#fff;font-family:Inter,system-ui,sans-serif;overflow:hidden}
-body{padding:10px;background:radial-gradient(circle at 50% 35%,rgba(216,183,90,.18),transparent 42%),linear-gradient(180deg,#050505,#000)}
-.arena{width:100%;height:100%;display:grid;grid-template-rows:70px 1fr 64px;gap:10px;padding:10px;border:1px solid var(--line);border-radius:16px;background:rgba(0,0,0,.80);position:relative;overflow:hidden}
-.top{display:grid;grid-template-columns:260px 1fr 260px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:0 18px;background:rgba(8,8,8,.85)}
-.top b,.phase b{color:var(--gold2)}.top small{display:block;opacity:.75;font-size:10px}.top h1{text-align:center;margin:0;color:var(--gold2);letter-spacing:6px;font-size:28px;text-shadow:0 0 22px var(--gold)}.top h1 small{letter-spacing:5px;color:#fff}.phase{text-align:right;font-size:12px}
-.grid{min-height:0;display:grid;grid-template-columns:220px 1fr 280px;gap:10px}
-.panel{border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.72);padding:14px;overflow:hidden}
-.stats{display:grid;gap:10px}.stats div{border:1px solid rgba(216,183,90,.18);border-radius:10px;padding:12px;background:rgba(20,20,20,.55)}.stats b{display:block;color:var(--gold2);font-size:24px;margin-top:4px}
-.stage{position:relative;border:1px solid var(--line);border-radius:12px;background:radial-gradient(circle at 50% 44%,rgba(216,183,90,.18),transparent 38%),rgba(0,0,0,.55);overflow:hidden}
-.stage:before{content:"";position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:460px;height:460px;border-radius:50%;border:1px dashed rgba(216,183,90,.25);animation:spin 18s linear infinite}
-@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-.arena-master{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%);width:230px;height:320px;animation:breath 3.5s infinite ease-in-out}
-@keyframes breath{50%{transform:translate(-50%,-51%) scale(1.015)}}
-.hood{position:absolute;left:50%;top:0;transform:translateX(-50%);width:190px;height:245px;border-radius:48% 48% 34% 34%;background:linear-gradient(145deg,#181818,#030303);border:1px solid rgba(216,183,90,.25);box-shadow:0 0 55px rgba(216,183,90,.25)}
-.mask{position:absolute;left:50%;top:58px;transform:translateX(-50%);width:118px;height:148px;border:2px solid var(--gold);border-radius:48% 48% 38% 38%;background:#080808;box-shadow:0 0 35px rgba(216,183,90,.45)}
-.mask i{position:absolute;top:54px;width:33px;height:10px;background:var(--gold2);border-radius:20px;box-shadow:0 0 16px var(--gold2)}.mask i:first-child{left:22px}.mask i:last-child{right:22px}
-.boss{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);width:min(520px,76%);padding:14px;border:1px solid rgba(215,38,56,.45);border-radius:12px;background:rgba(20,0,5,.72);opacity:.35;transition:.3s}
-.boss.active{opacity:1;box-shadow:0 0 28px rgba(215,38,56,.35)}
-.boss-name{text-align:center;color:#ff9da8;font-weight:1000;letter-spacing:3px}.boss-bar{height:14px;background:#25070b;border-radius:99px;overflow:hidden;margin-top:9px}.boss-bar span{display:block;height:100%;width:100%;background:linear-gradient(90deg,#d72638,#ff9da8);transition:.35s}.boss-hp{text-align:center;margin-top:5px;font-weight:1000}
-.event-banner{position:absolute;left:50%;top:16px;transform:translateX(-50%);padding:10px 26px;border:1px solid var(--line);border-radius:999px;background:rgba(0,0,0,.74);color:var(--gold2);font-weight:1000;letter-spacing:2px}
-.director h3{color:var(--gold2);text-align:center;margin:8px 0}.director p{font-size:13px;line-height:1.4}.log{font-size:12px;line-height:1.5;max-height:220px;overflow:hidden}
-.controls{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.controls button{border:1px solid var(--line);border-radius:12px;background:#111;color:var(--gold2);font-weight:1000;cursor:pointer}
-.toast{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.86);opacity:0;padding:14px 24px;border:1px solid var(--gold);border-radius:12px;background:rgba(0,0,0,.92);color:var(--gold2);font-size:24px;font-weight:1000;text-shadow:0 0 20px var(--gold);transition:.28s}.toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
-.boss-mode .mask i{background:#ff4c4c;box-shadow:0 0 18px #ff3333}
-</style>
+<title>LIVE ARENA™ — Core 7.2 Mask Integration</title>
+<link rel="stylesheet" href="assets/css/core7-2.css">
 </head>
 <body>
 <div class="arena" id="arena">
-  <header class="top">
-    <div><b>SESSION #A7F3-29</b><small>EP.001 — THE AWAKENING</small></div>
-    <h1>LIVE ARENA™<small>CORE 7.1 SINGLE FILE FIX</small></h1>
-    <div class="phase">BOSS PHASE <b id="bossPhase">SLEEPING</b></div>
-  </header>
-  <main class="grid">
-    <aside class="panel stats">
-      <div>❤️ Likes <b id="likes">0</b></div>
-      <div>🎁 Gifts <b id="gifts">0</b></div>
-      <div>👥 Viewers <b id="viewers">142</b></div>
-      <div>🔥 Combo <b id="combo">x0</b></div>
-      <div>⚡ Energy <b id="energy">0%</b></div>
-    </aside>
-    <section class="stage">
-      <div class="arena-master"><div class="hood"></div><div class="mask"><i></i><i></i></div></div>
-      <div class="boss" id="boss"><div class="boss-name">BOSS DA ARENA</div><div class="boss-bar"><span id="bossHpBar"></span></div><div class="boss-hp" id="bossHp">100%</div></div>
-      <div class="event-banner" id="eventBanner">ARENA READY</div>
-    </section>
-    <aside class="panel director">
-      <h3>🤖 AI DIRECTOR</h3><p id="ai">A Arena está estável.</p>
-      <h3>🎯 MISSÃO</h3><p id="mission">Carregar energia até 100%.</p>
-      <h3>📜 EVENT LOG</h3><div id="log" class="log"></div>
-    </aside>
-  </main>
-  <section class="controls">
-    <button onclick="eventArena('like')">❤️ Like</button>
-    <button onclick="eventArena('gift')">🎁 Gift</button>
-    <button onclick="eventArena('comment')">💬 Chat</button>
-    <button onclick="eventArena('boss')">⚠ Spawn Boss</button>
-    <button onclick="eventArena('attack')">⚔ Attack Boss</button>
-    <button onclick="eventArena('random')">🌌 Random Event</button>
+<header class="top">
+  <div><b>SESSION #A7F3-29</b><small>EP.002 — THE MASK AWAKENS</small></div>
+  <h1>LIVE ARENA™<small>CORE 7.2 MASK INTEGRATION</small></h1>
+  <div class="phase">BOSS PHASE <b id="bossPhase">SLEEPING</b></div>
+</header>
+<main class="grid">
+  <aside class="panel stats">
+    <div>❤️ Likes <b id="likes">0</b></div>
+    <div>🎁 Gifts <b id="gifts">0</b></div>
+    <div>👥 Viewers <b id="viewers">142</b></div>
+    <div>🔥 Combo <b id="combo">x0</b></div>
+    <div>⚡ Energy <b id="energy">0%</b></div>
+  </aside>
+  <section class="stage">
+    <div class="event-banner" id="eventBanner">ARENA MASTER ONLINE</div>
+    <div class="mask-wrap"><img src="assets/images/arena-master-mask.png" alt="Arena Master"></div>
+    <div class="boss" id="boss">
+      <div class="boss-name">BOSS DA ARENA</div>
+      <div class="boss-bar"><span id="bossHpBar"></span></div>
+      <div class="boss-hp" id="bossHp">100%</div>
+    </div>
   </section>
-  <div class="toast" id="toast">ONLINE</div>
+  <aside class="panel director">
+    <h3>🤖 AI DIRECTOR</h3><p id="ai">A Arena está estável.</p>
+    <h3>🎯 MISSÃO</h3><p id="mission">Carregar energia até 100%.</p>
+    <h3>📜 EVENT LOG</h3><div id="log" class="log"></div>
+  </aside>
+</main>
+<section class="controls">
+  <button onclick="eventArena('like')">❤️ Like</button>
+  <button onclick="eventArena('gift')">🎁 Gift</button>
+  <button onclick="eventArena('comment')">💬 Chat</button>
+  <button onclick="eventArena('boss')">⚠ Spawn Boss</button>
+  <button onclick="eventArena('attack')">⚔ Attack Boss</button>
+  <button onclick="eventArena('random')">🌌 Random Event</button>
+</section>
+<div class="toast" id="toast">ONLINE</div>
 </div>
-<script>
-const $=id=>document.getElementById(id);
-const state={likes:0,gifts:0,viewers:142,combo:0,energy:0,bossActive:false,bossHp:100,bossPhase:"sleeping"};
-const events=[["⚡","Tempestade de Energia",12],["💎","Diamond Rain",18],["👑","Golden Hour",15],["🔥","Arena Frenzy",20],["🌑","Eclipse",10]];
-function fmt(n){return n.toLocaleString("pt-PT")}
-function toast(t){$("toast").textContent=t;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1200)}
-function log(t){$("log").innerHTML=t+"<br>"+$("log").innerHTML}
-function ai(){if(state.bossActive&&state.bossHp<=20)return"O Boss está quase derrotado. Ataquem agora.";if(state.bossActive&&state.bossHp<=50)return"O Boss entrou em fúria. A Arena treme.";if(state.bossActive)return"Batalha ativa. O público controla o combate.";if(state.energy>=100)return"Energia máxima. O Boss pode despertar.";if(state.combo>=10)return"Combo forte. A comunidade está a aquecer.";return"A Arena está estável."}
-function update(){ $("likes").textContent=fmt(state.likes);$("gifts").textContent=fmt(state.gifts);$("viewers").textContent=fmt(state.viewers);$("combo").textContent="x"+state.combo;$("energy").textContent=state.energy+"%";$("bossPhase").textContent=state.bossPhase.toUpperCase();$("bossHp").textContent=state.bossHp+"%";$("bossHpBar").style.width=state.bossHp+"%";$("boss").classList.toggle("active",state.bossActive);document.body.classList.toggle("boss-mode",state.bossActive);$("ai").textContent=ai()}
-function addEnergy(v){state.energy=Math.min(100,state.energy+v);if(state.energy>=100&&!state.bossActive)$("mission").textContent="Boss disponível. Ativa a batalha."}
-function eventArena(type){
- if(type==="like"){state.likes+=Math.floor(Math.random()*600)+100;addEnergy(3);toast("+ LIKES");log("❤️ Likes aumentaram a energia.")}
- if(type==="gift"){state.gifts++;state.combo++;addEnergy(15);toast("🎁 GIFT CINEMATIC");log("🎁 Presente recebido. Combo +"+state.combo)}
- if(type==="comment"){toast("💬 CHAT");log("💬 O chat está ativo.")}
- if(type==="boss"){state.bossActive=true;state.bossHp=100;state.bossPhase="awakening";$("mission").textContent="Derrotar o Boss.";toast("⚠ BOSS DESPERTOU");log("⚠ Boss entrou na Arena.");setTimeout(()=>{if(state.bossActive)state.bossPhase="attack";update()},1800)}
- if(type==="attack"){if(state.bossActive){const d=Math.floor(8+state.combo*.4);state.bossHp=Math.max(0,state.bossHp-d);if(state.bossHp<=50&&state.bossHp>20)state.bossPhase="fury";if(state.bossHp<=20&&state.bossHp>0)state.bossPhase="last-life";if(state.bossHp<=0){state.bossPhase="defeated";state.bossActive=false;$("mission").textContent="Boss derrotado.";state.energy=0;toast("🏆 VITÓRIA")}else toast("⚔ -"+d+" HP");log("⚔ Ataque ao Boss: -"+d+" HP")}}
- if(type==="random"){const e=events[Math.floor(Math.random()*events.length)];$("eventBanner").textContent=e[1].toUpperCase();addEnergy(e[2]);toast(e[0]+" "+e[1]);log(e[0]+" Evento: "+e[1])}
- update()
-}
-window.eventArena=eventArena;
-setInterval(()=>{state.viewers+=Math.floor(Math.random()*9)-3;if(state.viewers<0)state.viewers=0;update()},1600);
-setInterval(()=>{const r=Math.random();if(r<.45)eventArena("like");else if(r<.62)eventArena("comment");else if(r<.75)eventArena("gift")},3800);
-update();setTimeout(()=>toast("CORE 7.1 FIX ONLINE"),500);
-</script>
+<script src="engine/core7-2.js"></script>
 </body>
 </html>

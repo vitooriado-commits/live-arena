@@ -1,3 +1,3 @@
-# LIVE ARENA Core 7.1 Single File Fix
+# LIVE ARENA™ Core 7.2 Mask Integration
 
-Upload este index.html para substituir o anterior.
+Integra a máscara cinematográfica no centro da LIVE ARENA™.
