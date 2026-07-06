@@ -1,116 +1,124 @@
-<!DOCTYPE html>
-<html lang="pt-PT">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LIVE ARENA™ — Core 6.0 Cinematic Edition | 16:9 Fix</title>
-<style>
-*{box-sizing:border-box}
-html,body{width:100%;height:100%;margin:0;background:#000;overflow:hidden}
-body{display:grid;place-items:center;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#fff}
-:root{--gold:#ffe27a;--gold2:#b8872b;--glass:rgba(7,7,8,.72);--line:rgba(255,214,94,.22);--soft:rgba(255,226,122,.12)}
+import { BattleEngine } from "./battle-engine.js";
+import { Director } from "./ai-director.js";
+import { EventEngine } from "./event-engine.js";
 
-/* CORREÇÃO PRINCIPAL: canvas bloqueado em 16:9 */
-.arena-shell{
-  position:relative;
-  width:min(100vw,177.7778vh);
-  height:min(100vh,56.25vw);
-  aspect-ratio:16/9;
-  overflow:hidden;
-  display:grid;
-  grid-template-rows:10.5% 56.5% 14% 6.6% 10.4%;
-  gap:1%;
-  padding:0.75%;
-  background:
-    radial-gradient(circle at 50% 30%,rgba(255,218,88,.13),transparent 28%),
-    radial-gradient(circle at 50% 50%,rgba(255,218,88,.07),transparent 45%),
-    linear-gradient(180deg,#050505 0%,#000 55%,#050505 100%);
-  border:1px solid rgba(255,221,104,.35);
-  border-radius:1.1vw;
-  box-shadow:0 0 0 1px rgba(255,221,104,.08) inset,0 0 70px rgba(255,200,40,.09);
-  color:#f8f4df;
+const $ = id => document.getElementById(id);
+const fmt = n => n.toLocaleString("pt-PT");
+
+const state = {
+  likes: 0,
+  gifts: 0,
+  viewers: 142,
+  combo: 0,
+  energy: 0
+};
+
+const battle = new BattleEngine();
+const director = new Director();
+const events = new EventEngine();
+
+function toast(text){
+  const t = $("toast");
+  t.textContent = text;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),1200);
 }
-.arena-shell:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px);background-size:42px 42px;opacity:.22;pointer-events:none}.arena-shell:after{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at center,transparent 0 43%,rgba(255,216,83,.07) 44%,transparent 45%),radial-gradient(circle at center,transparent 0 62%,rgba(255,216,83,.055) 63%,transparent 64%);pointer-events:none}
 
-.topbar,.arena-grid,.mission-row,.gift-row,.bottom-row{position:relative;z-index:2}.topbar{display:grid;grid-template-columns:1fr 1.7fr 1fr;align-items:center;padding:0 1.1%;border:1px solid var(--line);border-radius:.75vw;background:linear-gradient(180deg,rgba(10,10,10,.82),rgba(0,0,0,.72))}.session b,.event-timer b{display:block;font-size:clamp(8px,.78vw,15px);color:var(--gold);letter-spacing:.035em}.session span,.event-timer span{display:block;margin-top:.4vw;font-size:clamp(6px,.58vw,11px);font-weight:900;color:#d8d8d8;letter-spacing:.06em}.brand{text-align:center;font-weight:1000;font-size:clamp(20px,1.85vw,38px);letter-spacing:.44em;color:var(--gold);text-shadow:0 0 22px rgba(255,220,90,.5)}.brand small{display:block;margin-top:.18vw;font-size:clamp(5px,.42vw,9px);letter-spacing:.78em;color:#e8e0b4}.event-timer{text-align:right}.event-timer strong{display:block;font-size:clamp(16px,1.55vw,30px);line-height:1;color:#fff}
+function log(text){
+  $("log").innerHTML = text + "<br>" + $("log").innerHTML;
+}
 
-.arena-grid{display:grid;grid-template-columns:11.2% 1fr 12%;gap:.55%}.left-hud,.right-hud{display:grid;gap:1.9%;min-height:0}.left-hud{grid-template-rows:repeat(4,16%) 1fr}.right-hud{grid-template-rows:36% 38% 1fr}.hud-card,.top-gifter,.side-panel,.energy-widget,.mission-card,.ai-mini,.gift-row button,.bottom-row>div{border:1px solid var(--line);border-radius:.65vw;background:linear-gradient(180deg,rgba(10,10,10,.82),rgba(0,0,0,.68));box-shadow:0 0 22px rgba(255,200,40,.04), inset 0 0 18px rgba(255,217,93,.018)}.hud-card{position:relative;display:grid;grid-template-columns:30% 1fr;grid-template-rows:40% 60%;align-items:center;padding:5%}.hud-card span{grid-row:1/3;font-size:clamp(18px,1.65vw,32px);filter:drop-shadow(0 0 10px rgba(255,221,104,.25))}.hud-card small{font-size:clamp(5px,.47vw,9px);font-weight:900;letter-spacing:.15em;color:#aaa}.hud-card b{font-size:clamp(13px,1.1vw,22px);letter-spacing:.04em;color:#fff}.pulse{animation:pulse 2.1s ease-in-out infinite}@keyframes pulse{50%{box-shadow:0 0 30px rgba(255,64,150,.22),inset 0 0 18px rgba(255,64,150,.08)}}.top-gifter{padding:7%;overflow:hidden}.top-gifter h3,.side-panel h3{margin:0 0 7%;text-align:center;font-size:clamp(6px,.58vw,11px);letter-spacing:.22em;color:var(--gold)}.top-gifter strong{display:block;text-align:center;margin:4% 0 9%;font-size:clamp(10px,.95vw,18px);color:#fff}.top-gifter p,.ranking p{display:flex;justify-content:space-between;gap:.5vw;margin:.55vw 0;font-size:clamp(5px,.48vw,9px)}.top-gifter span{color:#ccc}.top-gifter b,.ranking span{color:#fff}
+function update(){
+  $("likes").textContent = fmt(state.likes);
+  $("gifts").textContent = fmt(state.gifts);
+  $("viewers").textContent = fmt(state.viewers);
+  $("combo").textContent = "x" + state.combo;
+  $("energy").textContent = state.energy + "%";
 
-.arena-stage{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:.55vw;background:radial-gradient(circle at 50% 44%,rgba(255,221,104,.18),transparent 25%),radial-gradient(circle at 50% 48%,rgba(255,221,104,.08),transparent 40%),linear-gradient(90deg,rgba(255,221,104,.02),rgba(0,0,0,.78) 22%,rgba(0,0,0,.75) 78%,rgba(255,221,104,.02));display:grid;place-items:center}.ambient-ring{position:absolute;aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,222,111,.25);box-shadow:0 0 42px rgba(255,215,72,.12);animation:spin 18s linear infinite}.ring-a{width:34%;top:2%;left:33%}.ring-b{width:49%;top:-10%;left:25.5%;border-style:dashed;opacity:.45;animation-duration:28s}@keyframes spin{to{transform:rotate(360deg)}}.dust{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,232,130,.18) 0 1px,transparent 1.3px);background-size:70px 70px;opacity:.13}.arena-master-label{position:absolute;top:5.5%;left:50%;transform:translateX(-50%);padding:.7% 4%;background:#050505;border-top:1px solid rgba(255,221,104,.22);border-bottom:1px solid rgba(255,221,104,.22);clip-path:polygon(8% 0,92% 0,100% 50%,92% 100%,8% 100%,0 50%);font-size:clamp(8px,.78vw,15px);font-weight:1000;letter-spacing:.28em;color:var(--gold);z-index:3}.arena-master{position:relative;width:24%;height:72%;display:grid;place-items:center;margin-top:1.2%;filter:drop-shadow(0 0 35px rgba(255,215,80,.2))}.shoulders{position:absolute;bottom:0;width:112%;height:32%;border:1px solid rgba(255,221,104,.18);border-radius:2vw;background:linear-gradient(180deg,rgba(20,20,20,.88),rgba(0,0,0,.95))}.hood{position:absolute;top:2%;width:78%;height:78%;border-radius:46% 46% 40% 40%;background:linear-gradient(180deg,#151515,#030303 72%);box-shadow:inset 0 0 38px rgba(255,217,91,.08),0 0 60px rgba(255,220,82,.15)}.mask{position:absolute;top:20%;width:50%;height:45%;border-radius:42% 42% 35% 35%;border:2px solid rgba(255,226,108,.66);background:#090909;box-shadow:0 0 38px rgba(255,226,108,.18),inset 0 -18px 25px rgba(0,0,0,.65)}.eye{position:absolute;top:34%;width:32%;height:8%;border-radius:999px;background:#fff2a3;box-shadow:0 0 13px #fff2a3,0 0 23px rgba(255,224,86,.9)}.eye.left{left:17%;transform:rotate(-7deg)}.eye.right{right:17%;transform:rotate(7deg)}
+  $("bossPhase").textContent = battle.phase.toUpperCase();
+  $("bossHp").textContent = battle.hp + "%";
+  $("bossHpBar").style.width = battle.hp + "%";
 
-.side-panel{padding:5%;overflow:hidden}.side-panel p{font-size:clamp(5px,.48vw,9px);line-height:1.45;color:#e8e5d8;margin:.42vw 0}.chat #chat{display:grid;gap:.35vw}.ranking p{border-bottom:1px solid rgba(255,255,255,.06);padding-bottom:.35vw}.ranking b{max-width:68%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ai p{color:#e7dec0}
+  const bossEl = $("boss");
+  bossEl.classList.toggle("active", battle.active);
+  document.body.classList.toggle("boss-mode", battle.active);
 
-.mission-row{display:grid;grid-template-columns:17% 1fr 23.5%;gap:.55%}.energy-widget{display:flex;align-items:center;gap:7%;padding:4%}.energy-orb{width:34%;aspect-ratio:1;border:3px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-size:clamp(10px,.95vw,18px);font-weight:1000;color:#fff;box-shadow:0 0 20px rgba(255,221,104,.4),inset 0 0 18px rgba(255,221,104,.06)}.energy-widget small,.mission-card small,.bottom-row small{display:block;font-size:clamp(5px,.45vw,9px);letter-spacing:.08em;color:#c4c4c4}.energy-widget b{display:block;margin-top:.3vw;font-size:clamp(8px,.7vw,14px);color:#fff}.mission-card{display:grid;place-items:center;text-align:center;padding:1%}.mission-card b{font-size:clamp(14px,1.55vw,30px);letter-spacing:.18em;color:#ffe8a2}.mission-card span{font-size:clamp(5px,.5vw,10px);font-weight:900;color:#d6d6d6}.ai-mini{padding:4%;font-size:clamp(8px,.72vw,14px);line-height:1.4}.ai-mini b{color:var(--gold)}
+  const aiText = director.speak(state, battle);
+  $("ai").textContent = aiText;
+}
 
-.gift-row{display:grid;grid-template-columns:repeat(6,1fr);gap:.55%}.gift-row button{cursor:pointer;color:#ffe7a0;font-weight:900;font-size:clamp(6px,.58vw,11px);border-radius:.55vw;transition:.2s;background:linear-gradient(180deg,rgba(10,10,10,.86),rgba(0,0,0,.7))}.gift-row button:hover{transform:translateY(-1px);box-shadow:0 0 25px rgba(255,221,104,.18)}.bottom-row{display:grid;grid-template-columns:17% 18% 25% 17% 1fr;gap:.55%}.bottom-row>div{display:flex;flex-direction:column;justify-content:center;padding:4%}.bottom-row b{font-size:clamp(10px,1vw,20px);color:#fff6c7}.bottom-row span{font-size:clamp(4px,.42vw,8px);font-weight:900;color:#cfcfcf}
+function addEnergy(v){
+  state.energy = Math.min(100, state.energy + v);
+  if(state.energy >= 100 && !battle.active){
+    $("mission").textContent = "Boss disponível. Ativa a batalha.";
+  }
+}
 
-.boss-alert,.toast{position:absolute;z-index:10;left:50%;transform:translate(-50%,-14px);opacity:0;pointer-events:none}.boss-alert{top:16%;padding:1% 3%;text-align:center;border:1px solid rgba(255,80,80,.6);border-radius:.8vw;background:rgba(20,0,0,.9);box-shadow:0 0 45px rgba(255,0,0,.28)}.boss-alert small{display:block;font-size:clamp(16px,1.6vw,32px)}.boss-alert b{display:block;color:#ffcf7b;letter-spacing:.2em}.boss-alert span{display:block;color:#fff}.toast{bottom:13%;padding:.8% 2%;border:1px solid var(--line);border-radius:.6vw;background:rgba(0,0,0,.82);color:#ffe7a0;font-weight:900}.boss-alert.show,.toast.show{animation:showToast 2.2s ease forwards}@keyframes showToast{10%,85%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-14px)}}
+function handle(type){
+  if(type === "like"){
+    state.likes += Math.floor(Math.random()*600)+100;
+    addEnergy(3);
+    toast("+ LIKES");
+    log("❤️ Likes aumentaram a energia.");
+  }
 
-/* Em ecrãs muito pequenos mantém legível sem sair da moldura */
-@media(max-width:900px){.arena-shell{border-radius:10px}.brand{letter-spacing:.25em}.brand small{letter-spacing:.45em}.arena-grid{grid-template-columns:12.5% 1fr 13.5%}.mission-card b{letter-spacing:.12em}}
-</style>
-</head>
-<body>
-<div class="arena-shell" id="arenaShell">
-<header class="topbar">
-  <div class="session"><b>SESSION #A7F3-29</b><span>THE AWAKENING</span></div>
-  <div class="brand">LIVE ARENA™<small>CORE 6.0 CINEMATIC EDITION</small></div>
-  <div class="event-timer"><b>PRÓXIMO EVENTO</b><span>BOSS DA ARENA</span><strong id="timer">03:50</strong></div>
-</header>
+  if(type === "gift"){
+    state.gifts++;
+    state.combo++;
+    addEnergy(15);
+    toast("🎁 GIFT CINEMATIC");
+    log("🎁 Presente recebido. Combo +" + state.combo);
+  }
 
-<main class="arena-grid">
-  <aside class="left-hud">
-    <div class="hud-card pulse"><span>💗</span><small>LIKES</small><b id="likes">858 466</b></div>
-    <div class="hud-card"><span>🎁</span><small>PRESENTES</small><b id="gifts">289</b></div>
-    <div class="hud-card"><span>👥</span><small>VIEWERS</small><b id="viewers">5 775</b></div>
-    <div class="hud-card"><span>⭐</span><small>SEGUIDORES</small><b id="followers">201</b></div>
-    <div class="top-gifter"><h3>TOP GIFTER</h3><strong>@GUERREIRO 👑</strong><p><span>Presentes</span><b>98</b></p><p><span>Pontos</span><b>24.580</b></p></div>
-  </aside>
+  if(type === "comment"){
+    toast("💬 CHAT");
+    log("💬 O chat está ativo.");
+  }
 
-  <section class="arena-stage">
-    <div class="ambient-ring ring-a"></div>
-    <div class="ambient-ring ring-b"></div>
-    <div class="dust"></div>
-    <div class="arena-master-label">ARENA MASTER</div>
-    <div class="arena-master" id="arenaMaster">
-      <div class="shoulders"></div><div class="hood"></div>
-      <div class="mask"><div class="eye left"></div><div class="eye right"></div></div>
-    </div>
-  </section>
+  if(type === "boss"){
+    battle.spawn();
+    $("mission").textContent = "Derrotar o Boss.";
+    toast("⚠ BOSS DESPERTOU");
+    log("⚠ Boss entrou na Arena.");
+  }
 
-  <aside class="right-hud">
-    <section class="side-panel chat"><h3>CHAT DA ARENA</h3><div id="chat"><p>💬 @ArenaFan: Vamos desbloquear o Boss!</p><p>🎁 @Guerreiro enviou Diamond Storm!</p><p>🎁 @Guerreiro enviou Rosa de Fogo!</p><p>🎁 @Guerreiro enviou Arena Universe!</p></div></section>
-    <section class="side-panel ranking"><h3>RANKING DA ARENA</h3><p><b>1 Guerreiro 👑</b><span>33 190</span></p><p><b>2 Fenix</b><span>18 750</span></p><p><b>3 Dragon</b><span>12 420</span></p><p><b>4 Shadow</b><span>9 860</span></p><p><b>5 Estrela</b><span>8 430</span></p></section>
-    <section class="side-panel ai"><h3>ARENA AI</h3><p id="aiText">Diamond Storm recebida. A Arena ganhou energia.</p></section>
-  </aside>
-</main>
+  if(type === "attack"){
+    const damage = Math.floor(8 + state.combo * 0.4);
+    battle.attack(damage);
+    toast("⚔ -" + damage + " HP");
+    log("⚔ Ataque ao Boss: -" + damage + " HP");
+    if(!battle.active && battle.hp <= 0){
+      $("mission").textContent = "Boss derrotado.";
+      toast("🏆 VITÓRIA");
+      state.energy = 0;
+    }
+  }
 
-<section class="mission-row">
-  <div class="energy-widget"><div class="energy-orb" id="energyOrb">100%</div><div><small>ENERGIA DA ARENA</small><b id="energyPoints">16 000 / 16 000</b></div></div>
-  <div class="mission-card"><small>MISSÃO ATIVA</small><b id="mission">DESBLOQUEAR O BOSS</b><span>A ARENA DEPENDE DE TI!</span></div>
-  <div class="ai-mini"><b>ARENA AI:</b><span id="aiMini"> Diamond Storm recebida. A Arena ganhou energia.</span></div>
-</section>
+  if(type === "random"){
+    const e = events.random();
+    $("eventBanner").textContent = e.name.toUpperCase();
+    addEnergy(e.energy);
+    toast(e.icon + " " + e.name);
+    log(e.icon + " Evento: " + e.name);
+  }
 
-<section class="gift-row">
-  <button data-gift="Rosa de Fogo">🌹 Rosa de Fogo</button><button data-gift="Coroa Arena">👑 Coroa Arena</button><button data-gift="Diamond Storm">💎 Diamond Storm</button><button data-gift="Dragão Dourado">🐉 Dragão Dourado</button><button data-gift="Boss Key">🔑 Boss Key</button><button data-gift="Arena Universe">🌌 Arena Universe</button>
-</section>
+  update();
+}
 
-<section class="bottom-row">
-  <div><small>COMBO</small><b id="combo">x38</b><span>INCRÍVEL!</span></div>
-  <div><small>PRESENTE RARO</small><b id="rareGift">DIAMOND STORM</b><span>00:18</span></div>
-  <div><small>EVENTO ATIVO</small><b id="activeEvent">TEMPESTADE DE ENERGIA</b><span>00:27</span></div>
-  <div><small>STREAK</small><b id="streak">21</b><span>MOMENTO ÉPICO!</span></div>
-  <div><small>POWERED BY</small><b>LIVE ARENA™</b><span>OBS Edition</span></div>
-</section>
+window.LiveArena = { event: handle, state, battle };
 
-<div class="boss-alert" id="bossAlert"><small>⚠</small><b>BOSS DA ARENA</b><span>DESPERTOU</span></div>
-<div class="toast" id="toast">LIVE ARENA™ ONLINE</div>
-</div>
-<script>
-const $=id=>document.getElementById(id);let likes=858466,gifts=289,viewers=5775,combo=38,sec=230;
-function fmt(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
-setInterval(()=>{likes+=Math.floor(Math.random()*34)+7;viewers+=Math.floor(Math.random()*9)-2;$('likes').textContent=fmt(likes);$('viewers').textContent=fmt(viewers);sec=Math.max(0,sec-1);const m=String(Math.floor(sec/60)).padStart(2,'0'),s=String(sec%60).padStart(2,'0');$('timer').textContent=`${m}:${s}`},1000);
-document.querySelectorAll('[data-gift]').forEach(btn=>btn.addEventListener('click',()=>{const gift=btn.dataset.gift;gifts++;combo++;$('gifts').textContent=fmt(gifts);$('combo').textContent='x'+combo;$('rareGift').textContent=gift.toUpperCase();$('aiText').textContent=`${gift} recebido. A Arena ganhou energia.`;$('aiMini').textContent=` ${gift} recebido. A Arena ganhou energia.`;const toast=$('toast');toast.textContent=`${gift} ATIVADO`;toast.classList.remove('show');void toast.offsetWidth;toast.classList.add('show');if(gift==='Boss Key'||gift==='Arena Universe'){const boss=$('bossAlert');boss.classList.remove('show');void boss.offsetWidth;boss.classList.add('show')}}));
-</script>
-</body>
-</html>
+setInterval(()=>{
+  state.viewers += Math.floor(Math.random()*9)-3;
+  if(state.viewers < 0) state.viewers = 0;
+  update();
+},1600);
+
+setInterval(()=>{
+  const r = Math.random();
+  if(r < .45) handle("like");
+  else if(r < .62) handle("comment");
+  else if(r < .75) handle("gift");
+},3800);
+
+update();
+setTimeout(()=>toast("CORE 7.1 GAME ENGINE ONLINE"),500);

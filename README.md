@@ -1,29 +1,29 @@
-# LIVE ARENA™ Core 7.1 Game Engine
+export class BattleEngine {
+  constructor(){
+    this.active = false;
+    this.hp = 100;
+    this.phase = "sleeping";
+  }
 
-Primeira versão do motor de jogo interativo.
+  spawn(){
+    this.active = true;
+    this.hp = 100;
+    this.phase = "awakening";
+    setTimeout(()=> {
+      if(this.active) this.phase = "attack";
+    }, 1800);
+  }
 
-## Inclui
+  attack(damage){
+    if(!this.active) return;
+    this.hp = Math.max(0, this.hp - damage);
 
-- Battle Engine
-- Boss HP
-- Boss phases
-- Energy system
-- Combo system
-- AI Director
-- Dynamic Events
-- Controls for testing
+    if(this.hp <= 50 && this.hp > 20) this.phase = "fury";
+    if(this.hp <= 20 && this.hp > 0) this.phase = "last-life";
 
-## Como usar
-
-1. Envia o conteúdo do ZIP para GitHub.
-2. Abre `index.html`.
-3. Testa os botões no rodapé.
-
-## Próximas fases
-
-Core 7.2:
-- Partículas reais
-- Gift Cinematic FX
-- Sons WebAudio
-- Tremor de ecrã
-- Boss intro mais cinematográfica
+    if(this.hp <= 0){
+      this.phase = "defeated";
+      this.active = false;
+    }
+  }
+}
