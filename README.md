@@ -1,25 +1,27 @@
-# LIVE ARENA™ Core 5.0 Functional
+# LIVE ARENA™ Core 6.0 Cinematic Edition
 
-Esta é a primeira versão funcional para GitHub Pages.
+Versão mais cinematográfica da LIVE ARENA™.
+
+## Inclui
+
+- Arena Master 2.0 com respiração subtil
+- Máscara livre sem elementos a tapar
+- HUD premium
+- Gift FX Engine inicial
+- Boss Intro visual
+- Arena AI dinâmica
+- Layout preparado para GitHub Pages e OBS
 
 ## Como usar
 
 1. Envia todos os ficheiros para o repositório.
 2. Ativa GitHub Pages.
 3. Abre `index.html`.
-4. Opcional: abre `creator-panel.html` noutra aba para enviar eventos de teste.
 
-## Inclui
+## Próxima fase
 
-- HUD cinematográfico
-- Arena Master sem elementos a tapar a máscara
-- Gift Engine
-- Boss Engine
-- Arena AI
-- Event Engine
-- Creator Panel
-- Estrutura modular
-
-## Próximo passo
-
-Ligar ao Local Connector / WebSocket para eventos reais.
+Core 6.1:
+- Sons
+- partículas reais
+- overlay transparente OBS
+- conector local WebSocket
