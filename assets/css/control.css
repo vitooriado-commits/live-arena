@@ -1,0 +1,5 @@
+body{margin:0;background:#060606;color:white;font-family:Inter,system-ui;padding:28px}
+.panel{max-width:900px;margin:auto;border:1px solid rgba(216,183,90,.35);border-radius:22px;padding:24px;background:#0c0c0c}
+h1{color:#fff0a6;letter-spacing:3px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+button{padding:18px;border-radius:14px;background:#111;border:1px solid rgba(216,183,90,.45);color:#fff0a6;font-weight:1000;cursor:pointer}
+#log{margin-top:18px;border:1px solid rgba(216,183,90,.22);border-radius:14px;min-height:140px;padding:16px;background:#090909}

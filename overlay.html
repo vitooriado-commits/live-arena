@@ -1,1 +1,74 @@
-<!DOCTYPE html><html><body><h1>Overlay</h1></body></html>
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>LIVE ARENA™ — Core 5.0</title>
+<link rel="stylesheet" href="assets/css/live-arena.css">
+</head>
+<body>
+<div class="app">
+<header class="header">
+  <div class="session">SESSION #A7F3-29 <span class="live">LIVE</span><small>THE AWAKENING</small></div>
+  <div class="logo">LIVE ARENA™<small>CORE 5.0 FUNCTIONAL</small></div>
+  <div class="next"><b>PRÓXIMO EVENTO</b><br>BOSS DA ARENA<strong id="nextTime">03:50</strong></div>
+</header>
+
+<main class="main">
+<section class="left">
+  <div class="panel stat"><div class="icon">💗</div><div><div class="label">Likes</div><div class="value" id="likes">856 324</div></div></div>
+  <div class="panel stat"><div class="icon">🎁</div><div><div class="label">Presentes</div><div class="value" id="gifts">282</div></div></div>
+  <div class="panel stat"><div class="icon">👥</div><div><div class="label">Viewers</div><div class="value" id="viewers">5744</div></div></div>
+  <div class="panel stat"><div class="icon">⭐</div><div><div class="label">Seguidores</div><div class="value" id="followers">201</div></div></div>
+  <div class="panel top"><h3>TOP GIFTER</h3><div class="name" id="topGifter">@GUERREIRO 👑</div><p><span>Presentes</span><b>98</b></p><p><span>Pontos</span><b>24.580</b></p></div>
+</section>
+
+<section class="center">
+  <div class="master">ARENA MASTER</div>
+  <div class="hero" id="hero">
+    <div class="shoulders"></div>
+    <div class="hood"></div>
+    <div class="mask"><div class="eye l"></div><div class="eye r"></div></div>
+  </div>
+</section>
+
+<section class="right">
+  <div class="panel box"><h3>CHAT DA ARENA</h3><div id="chat">
+    <div class="chatLine">💬 @Rainha: Boss vai cair! 🐉</div>
+    <div class="chatLine">💬 @Fenix: Isto está épico! 👑</div>
+    <div class="chatLine">💬 @Estrela: Tudo desbloqueado hoje! ⚡</div>
+  </div></div>
+  <div class="panel box"><h3>RANKING DA ARENA</h3><div id="ranking">
+    <div class="rank"><b>1 Guerreiro 👑</b><span>33 190</span></div>
+    <div class="rank"><b>2 Fenix</b><span>18 750</span></div>
+    <div class="rank"><b>3 Dragon</b><span>12 420</span></div>
+    <div class="rank"><b>4 Shadow</b><span>9 860</span></div>
+    <div class="rank"><b>5 Estrela</b><span>8 430</span></div>
+  </div></div>
+  <div class="panel box ai"><h3>ARENA AI</h3><p id="ai">A máscara está livre. Nada cobre o Arena Master.</p></div>
+</section>
+</main>
+
+<section class="energyPanel">
+  <div class="energyCard"><div class="energyCircle" id="energyCircle">100%</div><div class="energyText">ENERGIA DA ARENA<b id="energyPoints">15 950 / 16 000</b></div></div>
+  <div class="mission"><small>MISSÃO ATIVA</small><b id="mission">DESBLOQUEAR O BOSS</b><small>A ARENA DEPENDE DE TI!</small></div>
+  <div class="aiMini"><b>ARENA AI:</b> <span id="aiMini">A energia chegou ao máximo. O chat controla o destino.</span></div>
+</section>
+
+<section class="gifts">
+  <div class="gift">🌹 Rosa de Fogo</div><div class="gift">👑 Coroa Arena</div><div class="gift">💎 Diamond Storm</div><div class="gift">🐉 Dragão Dourado</div><div class="gift">🔑 Boss Key</div><div class="gift">🌌 Arena Universe</div>
+</section>
+
+<section class="bottom">
+  <div class="tile">COMBO<div class="big" id="combo">x31</div><small>INCRÍVEL!</small></div>
+  <div class="tile">PRESENTE RARO<div class="big" id="rareGift">DIAMOND STORM</div><small>00:18</small></div>
+  <div class="tile">EVENTO ATIVO<div class="big" id="activeEvent">TEMPESTADE DE ENERGIA</div><small>00:27</small></div>
+  <div class="tile">STREAK<div class="big" id="streak">21</div><small>MOMENTO ÉPICO!</small></div>
+  <div class="tile">POWERED BY<div class="big">LIVE ARENA™</div><small>OBS Edition</small></div>
+</section>
+
+<div class="toast" id="toast">ARENA ONLINE</div>
+</div>
+<script type="module" src="engine/arena-engine.js"></script><script src="engine/manual-control-listener.js"></script>
+</body>
+</html>

@@ -1,1 +1,31 @@
-<!DOCTYPE html><html><body><h1>Creator Panel</h1></body></html>
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>LIVE ARENA™ — Creator Panel</title>
+<link rel="stylesheet" href="assets/css/control.css">
+</head>
+<body>
+<div class="panel">
+<h1>LIVE ARENA™ CREATOR PANEL</h1>
+<p>Abre o <b>index.html</b> noutra janela. Este painel envia eventos para teste.</p>
+<div class="grid">
+<button onclick="send('like')">❤️ Like</button>
+<button onclick="send('gift')">🎁 Gift</button>
+<button onclick="send('follow')">👥 Follow</button>
+<button onclick="send('comment')">💬 Comment</button>
+<button onclick="send('event')">🌩 Evento</button>
+<button onclick="send('boss')">⚠ Boss</button>
+</div>
+<div id="log">🟢 Painel pronto.</div>
+</div>
+<script>
+function send(type){
+  const payload = {type, amount:500, user:"@Creator", text:"Vamos Arena!", gift:"Diamond Storm", value:12, ts:Date.now()};
+  localStorage.setItem("liveArenaManualEvent", JSON.stringify(payload));
+  document.getElementById("log").innerHTML = "Evento: " + type + "<br>" + document.getElementById("log").innerHTML;
+}
+</script>
+</body>
+</html>
