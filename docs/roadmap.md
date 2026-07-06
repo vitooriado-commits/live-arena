@@ -1,1 +1,5 @@
-# Core 7 Roadmap\n\n7.1 Game Engine\n7.2 Cinematic FX\n7.3 TikTok Connector\n
+# LIVE ARENA Core 10 Roadmap
+
+10.0 Living Universe prototype
+10.1 WebSocket Cloud
+10.2 Persistent Profiles

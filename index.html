@@ -3,62 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LIVE ARENA™ — Core 7.3 Mask Asset Upgrade</title>
-<link rel="stylesheet" href="assets/css/core7-3.css">
+<title>LIVE ARENA™ — Core 10.0 Living Universe</title>
+<link rel="stylesheet" href="assets/css/core10.css">
 </head>
 <body>
 <div class="arena" id="arena">
-<header class="top">
-  <div><b>SESSION #A7F3-29</b><small>EP.003 — CLEAN MASK PROTOCOL</small></div>
-  <h1>LIVE ARENA™<small>CORE 7.3 MASK ASSET UPGRADE</small></h1>
-  <div class="phase">BOSS PHASE <b id="bossPhase">SLEEPING</b></div>
-</header>
-
-<main class="grid">
-  <aside class="panel stats">
-    <div>❤️ Likes <b id="likes">0</b></div>
-    <div>🎁 Gifts <b id="gifts">0</b></div>
-    <div>👥 Viewers <b id="viewers">142</b></div>
-    <div>🔥 Combo <b id="combo">x0</b></div>
-    <div>⚡ Energy <b id="energy">0%</b></div>
-  </aside>
-
-  <section class="stage">
-    <div class="aura"></div>
-    <div class="event-banner" id="eventBanner">ARENA MASTER ONLINE</div>
-
-    <div class="mask-wrap">
-      <img src="assets/images/arena-master-mask-clean.png" alt="Arena Master Mask">
+  <header class="topbar">
+    <div class="episode">
+      <b>SEASON 01</b>
+      <small>THE AWAKENING</small>
     </div>
 
-    <div class="boss" id="boss">
-      <div class="boss-name">BOSS DA ARENA</div>
-      <div class="boss-bar"><span id="bossHpBar"></span></div>
-      <div class="boss-hp" id="bossHp">100%</div>
+    <div class="brand">
+      LIVE ARENA™
+      <small>CORE 10.0 — THE LIVING UNIVERSE</small>
     </div>
+
+    <div class="world">
+      <b id="worldState">WORLD ONLINE</b>
+      <small id="worldClock">GLOBAL EVENT: STANDBY</small>
+    </div>
+  </header>
+
+  <main class="main">
+    <aside class="panel left">
+      <h3>🌍 WORLD STATE</h3>
+      <div class="stat"><span>👥 Global Players</span><b id="globalPlayers">12 480</b></div>
+      <div class="stat"><span>⚡ World Energy</span><b id="worldEnergy">42%</b></div>
+      <div class="stat"><span>👹 Global Boss HP</span><b id="globalBossHp">100%</b></div>
+      <div class="stat"><span>🏆 Season Rank</span><b id="seasonRank">#128</b></div>
+
+      <h3>🏰 GUILD WAR</h3>
+      <div class="guilds">
+        <div><b>🐉 Dragons</b><span id="dragons">52%</span></div>
+        <div><b>🔥 Phoenix</b><span id="phoenix">48%</span></div>
+      </div>
+    </aside>
+
+    <section class="stage">
+      <div class="realm" id="realmName">ROYAL ARENA</div>
+      <div class="world-aura"></div>
+
+      <div class="mask-zone">
+        <img src="assets/images/arena-master-mask.png" alt="Arena Master" id="arenaMask">
+      </div>
+
+      <div class="boss-panel" id="bossPanel">
+        <div class="boss-title" id="bossName">TITAN OMEGA</div>
+        <div class="boss-bar"><span id="bossBar"></span></div>
+        <small id="bossPhase">SLEEPING</small>
+      </div>
+    </section>
+
+    <aside class="panel right">
+      <h3>🤖 WORLD AI DIRECTOR</h3>
+      <p id="aiText">A Arena observa todos os mundos ligados.</p>
+
+      <h3>📡 LIVE EVENTS</h3>
+      <div class="feed" id="feed">
+        <p>🟢 Universe boot complete.</p>
+      </div>
+
+      <h3>🏛 HALL OF LEGENDS</h3>
+      <div class="legend"><b>@Guerreiro</b><span>318 bosses</span></div>
+      <div class="legend"><b>@Fenix</b><span>291 bosses</span></div>
+      <div class="legend"><b>@Dragon</b><span>266 bosses</span></div>
+    </aside>
+  </main>
+
+  <section class="timeline">
+    <div class="node active">INTRO</div>
+    <div class="node" id="nodeEnergy">ENERGY</div>
+    <div class="node" id="nodeBoss">BOSS</div>
+    <div class="node" id="nodeWar">GUILD WAR</div>
+    <div class="node" id="nodeVictory">VICTORY</div>
   </section>
 
-  <aside class="panel director">
-    <h3>🤖 AI DIRECTOR</h3>
-    <p id="ai">A Arena está estável.</p>
-    <h3>🎯 MISSÃO</h3>
-    <p id="mission">Carregar energia até 100%.</p>
-    <h3>📜 EVENT LOG</h3>
-    <div id="log" class="log"></div>
-  </aside>
-</main>
+  <section class="controls">
+    <button onclick="Arena.event('like')">❤️ Like</button>
+    <button onclick="Arena.event('gift')">🎁 Gift</button>
+    <button onclick="Arena.event('globalBoss')">👹 Global Boss</button>
+    <button onclick="Arena.event('guildWar')">⚔ Guild War</button>
+    <button onclick="Arena.event('realm')">🌌 Change Realm</button>
+    <button onclick="Arena.event('ai')">🤖 AI Director</button>
+  </section>
 
-<section class="controls">
-  <button onclick="eventArena('like')">❤️ Like</button>
-  <button onclick="eventArena('gift')">🎁 Gift</button>
-  <button onclick="eventArena('comment')">💬 Chat</button>
-  <button onclick="eventArena('boss')">⚠ Spawn Boss</button>
-  <button onclick="eventArena('attack')">⚔ Attack Boss</button>
-  <button onclick="eventArena('random')">🌌 Random Event</button>
-</section>
-
-<div class="toast" id="toast">ONLINE</div>
+  <div class="toast" id="toast">LIVE ARENA™ ONLINE</div>
 </div>
-<script src="engine/core7-3.js"></script>
+
+<script src="engine/core10.js"></script>
 </body>
 </html>
