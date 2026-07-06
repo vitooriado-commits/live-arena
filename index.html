@@ -3,26 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LIVE ARENA™ — Core 10.0 Living Universe</title>
-<link rel="stylesheet" href="assets/css/core10.css">
+<title>LIVE ARENA™ — Core 10.1 Cloud Ready</title>
+<link rel="stylesheet" href="assets/css/core10-1.css">
 </head>
 <body>
 <div class="arena" id="arena">
   <header class="topbar">
-    <div class="episode">
-      <b>SEASON 01</b>
-      <small>THE AWAKENING</small>
-    </div>
-
-    <div class="brand">
-      LIVE ARENA™
-      <small>CORE 10.0 — THE LIVING UNIVERSE</small>
-    </div>
-
-    <div class="world">
-      <b id="worldState">WORLD ONLINE</b>
-      <small id="worldClock">GLOBAL EVENT: STANDBY</small>
-    </div>
+    <div class="episode"><b>SEASON 01</b><small>THE AWAKENING</small></div>
+    <div class="brand">LIVE ARENA™<small>CORE 10.1 — CLOUD READY</small></div>
+    <div class="world"><b id="worldState">WORLD ONLINE</b><small id="cloudState">CLOUD: LOCAL MODE</small></div>
   </header>
 
   <main class="main">
@@ -60,14 +49,10 @@
       <p id="aiText">A Arena observa todos os mundos ligados.</p>
 
       <h3>📡 LIVE EVENTS</h3>
-      <div class="feed" id="feed">
-        <p>🟢 Universe boot complete.</p>
-      </div>
+      <div class="feed" id="feed"><p>🟢 Core 10.1 iniciado.</p></div>
 
-      <h3>🏛 HALL OF LEGENDS</h3>
-      <div class="legend"><b>@Guerreiro</b><span>318 bosses</span></div>
-      <div class="legend"><b>@Fenix</b><span>291 bosses</span></div>
-      <div class="legend"><b>@Dragon</b><span>266 bosses</span></div>
+      <h3>☁️ CLOUD SIGNAL</h3>
+      <p id="connectorStatus">Local simulation active.</p>
     </aside>
   </main>
 
@@ -90,7 +75,6 @@
 
   <div class="toast" id="toast">LIVE ARENA™ ONLINE</div>
 </div>
-
-<script src="engine/core10.js"></script>
+<script src="engine/core10-1.js"></script>
 </body>
 </html>

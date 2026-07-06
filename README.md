@@ -1,29 +1,13 @@
-# LIVE ARENA™ Core 10.0 — The Living Universe
+# LIVE ARENA™ Core 10.1 — Cloud Ready
 
-Implementação inicial do conceito de universo vivo.
+Versão preparada para GitHub Pages, OBS e futura ligação Cloud/WebSocket.
 
 ## Inclui
 
-- World AI Engine básico
-- Global Boss
-- Guild War
-- World Energy
-- Realm switching
-- Hall of Legends
-- Timeline de episódio
-- Máscara central limpa
-- Feed global de eventos
-
-## Como usar
-
-Substitui os ficheiros antigos no repositório pelos ficheiros deste ZIP.
-Abre `index.html` no GitHub Pages.
-
-## Próxima evolução
-
-Core 10.1:
-- Conector WebSocket
-- Persistência de dados
-- Ranking real
-- Perfis/Guildas
-- Eventos globais sincronizados
+- Public Overlay
+- Creator Control
+- Config JSON
+- Cloud Connector placeholder
+- Setup docs
+- Máscara livre no centro
+- Living Universe HUD

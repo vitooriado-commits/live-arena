@@ -1,0 +1,14 @@
+{
+  "project": "LIVE ARENA™",
+  "version": "10.1",
+  "mode": "cloud-ready",
+  "localControlKey": "LIVE_ARENA_EVENT",
+  "cloud": {
+    "enabled": false,
+    "websocketUrl": "ws://localhost:3000"
+  },
+  "overlay": {
+    "publicFile": "overlay.html",
+    "creatorFile": "creator-control.html"
+  }
+}

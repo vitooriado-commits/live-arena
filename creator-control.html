@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>LIVE ARENA™ — Creator Control</title>
+<link rel="stylesheet" href="assets/css/control.css">
+</head>
+<body>
+<div class="panel">
+<h1>LIVE ARENA™ Creator Control</h1>
+<p>Painel privado para controlar o Core 10.1.</p>
+<div class="grid">
+<button onclick="send('like')">❤️ Like</button>
+<button onclick="send('gift')">🎁 Gift</button>
+<button onclick="send('globalBoss')">👹 Global Boss</button>
+<button onclick="send('guildWar')">⚔ Guild War</button>
+<button onclick="send('realm')">🌌 Change Realm</button>
+<button onclick="send('ai')">🤖 AI Director</button>
+</div>
+<div id="log">🟢 Creator Control pronto.</div>
+</div>
+<script>
+function send(type){
+  const payload = { type, ts: Date.now(), source: "creator-control" };
+  localStorage.setItem("LIVE_ARENA_EVENT", JSON.stringify(payload));
+  document.getElementById("log").innerHTML = "Evento enviado: " + type + "<br>" + document.getElementById("log").innerHTML;
+}
+</script>
+</body>
+</html>
