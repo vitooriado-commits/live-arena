@@ -1,3 +1,3 @@
-# LIVE ARENA™ Core 7.2 Mask Integration
+# LIVE ARENA™ Core 7.3 Mask Asset Upgrade
 
-Integra a máscara cinematográfica no centro da LIVE ARENA™.
+Usa a máscara limpa como asset principal oficial.

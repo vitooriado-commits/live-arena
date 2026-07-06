@@ -3,16 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LIVE ARENA™ — Core 7.2 Mask Integration</title>
-<link rel="stylesheet" href="assets/css/core7-2.css">
+<title>LIVE ARENA™ — Core 7.3 Mask Asset Upgrade</title>
+<link rel="stylesheet" href="assets/css/core7-3.css">
 </head>
 <body>
 <div class="arena" id="arena">
 <header class="top">
-  <div><b>SESSION #A7F3-29</b><small>EP.002 — THE MASK AWAKENS</small></div>
-  <h1>LIVE ARENA™<small>CORE 7.2 MASK INTEGRATION</small></h1>
+  <div><b>SESSION #A7F3-29</b><small>EP.003 — CLEAN MASK PROTOCOL</small></div>
+  <h1>LIVE ARENA™<small>CORE 7.3 MASK ASSET UPGRADE</small></h1>
   <div class="phase">BOSS PHASE <b id="bossPhase">SLEEPING</b></div>
 </header>
+
 <main class="grid">
   <aside class="panel stats">
     <div>❤️ Likes <b id="likes">0</b></div>
@@ -21,21 +22,32 @@
     <div>🔥 Combo <b id="combo">x0</b></div>
     <div>⚡ Energy <b id="energy">0%</b></div>
   </aside>
+
   <section class="stage">
+    <div class="aura"></div>
     <div class="event-banner" id="eventBanner">ARENA MASTER ONLINE</div>
-    <div class="mask-wrap"><img src="assets/images/arena-master-mask.png" alt="Arena Master"></div>
+
+    <div class="mask-wrap">
+      <img src="assets/images/arena-master-mask-clean.png" alt="Arena Master Mask">
+    </div>
+
     <div class="boss" id="boss">
       <div class="boss-name">BOSS DA ARENA</div>
       <div class="boss-bar"><span id="bossHpBar"></span></div>
       <div class="boss-hp" id="bossHp">100%</div>
     </div>
   </section>
+
   <aside class="panel director">
-    <h3>🤖 AI DIRECTOR</h3><p id="ai">A Arena está estável.</p>
-    <h3>🎯 MISSÃO</h3><p id="mission">Carregar energia até 100%.</p>
-    <h3>📜 EVENT LOG</h3><div id="log" class="log"></div>
+    <h3>🤖 AI DIRECTOR</h3>
+    <p id="ai">A Arena está estável.</p>
+    <h3>🎯 MISSÃO</h3>
+    <p id="mission">Carregar energia até 100%.</p>
+    <h3>📜 EVENT LOG</h3>
+    <div id="log" class="log"></div>
   </aside>
 </main>
+
 <section class="controls">
   <button onclick="eventArena('like')">❤️ Like</button>
   <button onclick="eventArena('gift')">🎁 Gift</button>
@@ -44,8 +56,9 @@
   <button onclick="eventArena('attack')">⚔ Attack Boss</button>
   <button onclick="eventArena('random')">🌌 Random Event</button>
 </section>
+
 <div class="toast" id="toast">ONLINE</div>
 </div>
-<script src="engine/core7-2.js"></script>
+<script src="engine/core7-3.js"></script>
 </body>
 </html>
