@@ -1,0 +1,1 @@
+export const arena={version:'5.0'};
