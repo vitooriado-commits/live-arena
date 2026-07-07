@@ -1,0 +1,14 @@
+{
+  "globalPlayers": 12480,
+  "worldEnergy": 42,
+  "globalBossHp": 100,
+  "bossActive": false,
+  "guilds": {
+    "dragons": 52,
+    "phoenix": 48
+  },
+  "realm": "ROYAL ARENA",
+  "feed": [
+    "🟢 LIVE ARENA™ Realtime Server online."
+  ]
+}

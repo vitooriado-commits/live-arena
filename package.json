@@ -1,0 +1,12 @@
+{
+  "name": "live-arena-core-10-2-realtime-server",
+  "version": "10.2.0",
+  "description": "LIVE ARENA Core 10.2 Real-Time Server",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

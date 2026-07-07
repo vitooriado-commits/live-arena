@@ -1,13 +1,14 @@
-# LIVE ARENA™ Core 10.1 — Cloud Ready
+# LIVE ARENA™ Core 10.2 — Real-Time Server
 
-Versão preparada para GitHub Pages, OBS e futura ligação Cloud/WebSocket.
+Primeira versão com servidor WebSocket real.
 
-## Inclui
+## Instalação
 
-- Public Overlay
-- Creator Control
-- Config JSON
-- Cloud Connector placeholder
-- Setup docs
-- Máscara livre no centro
-- Living Universe HUD
+```bash
+npm install
+npm start
+```
+
+Depois abre `http://localhost:3000`.
+
+Abre em duas janelas e testa os botões. As duas atualizam em tempo real.
