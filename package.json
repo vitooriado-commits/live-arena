@@ -1,7 +1,6 @@
 {
-  "name": "live-arena-core-10-2-realtime-server",
-  "version": "10.2.0",
-  "description": "LIVE ARENA Core 10.2 Real-Time Server",
+  "name": "live-arena-core-10-3-profiles-ranking",
+  "version": "10.3.0",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js"

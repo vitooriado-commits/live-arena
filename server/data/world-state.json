@@ -9,6 +9,33 @@
   },
   "realm": "ROYAL ARENA",
   "feed": [
-    "🟢 LIVE ARENA™ Realtime Server online."
-  ]
+    "🟢 Core 10.3 Profiles + Ranking online."
+  ],
+  "profiles": {
+    "Guerreiro": {
+      "name": "Guerreiro",
+      "guild": "Dragons",
+      "xp": 12450,
+      "bosses": 318,
+      "gifts": 98,
+      "rank": "Legend"
+    },
+    "Fenix": {
+      "name": "Fenix",
+      "guild": "Phoenix",
+      "xp": 10820,
+      "bosses": 291,
+      "gifts": 76,
+      "rank": "Elite"
+    },
+    "Dragon": {
+      "name": "Dragon",
+      "guild": "Dragons",
+      "xp": 9450,
+      "bosses": 266,
+      "gifts": 64,
+      "rank": "Elite"
+    }
+  },
+  "history": []
 }

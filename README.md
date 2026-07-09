@@ -1,14 +1,10 @@
-# LIVE ARENA™ Core 10.2 — Real-Time Server
+# LIVE ARENA™ Core 10.3 — Profiles + Ranking
 
-Primeira versão com servidor WebSocket real.
-
-## Instalação
+Servidor realtime com perfis persistentes, XP, guildas e ranking global.
 
 ```bash
 npm install
 npm start
 ```
 
-Depois abre `http://localhost:3000`.
-
-Abre em duas janelas e testa os botões. As duas atualizam em tempo real.
+Abre `http://localhost:3000` e `http://localhost:3000/admin`.
